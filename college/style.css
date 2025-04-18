@@ -1,0 +1,320 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right, #ffdee9, #b5fffc);
+  color: #333;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 10px;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  animation: floatImage 4s ease-in-out infinite alternate,
+             fadeZoomIn 1s ease forwards;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+/* New floating animation */
+@keyframes floatImage {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.02);
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+}
+
+/* Combine this with a fade and zoom on load */
+@keyframes fadeZoomIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+.message {
+  margin-top: 30px;
+  font-size: 1.3em;
+  color: #d6336c;
+  animation: floatText 3s infinite;
+}
+
+/* Animations */
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatText {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+/* Add animation for left-to-right and right-to-left movement */
+@keyframes moveLeftToRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes moveRightToLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Apply animations to alternating rows */
+.gallery img:nth-child(odd) {
+  animation: moveLeftToRight 10s linear infinite;
+}
+
+.gallery img:nth-child(even) {
+  animation: moveRightToLeft 10s linear infinite;
+}
+
+/* Heart container */
+.heart-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+/* Main heart */
+.heart {
+  width: 50px;
+  height: 50px;
+  background-color: #ff4d6d;
+  position: relative;
+  transform: rotate(-45deg);
+  cursor: pointer;
+  animation: none;
+}
+
+.heart:before,
+.heart:after {
+  content: '';
+  width: 50px;
+  height: 50px;
+  background-color: #ff4d6d;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart:before {
+  top: -25px;
+  left: 0;
+}
+
+.heart:after {
+  left: 25px;
+  top: 0;
+}
+
+/* Vibration effect */
+@keyframes vibrate {
+  0%, 100% {
+    transform: rotate(-45deg) translate(0, 0);
+  }
+  25% {
+    transform: rotate(-45deg) translate(-2px, 2px);
+  }
+  50% {
+    transform: rotate(-45deg) translate(2px, -2px);
+  }
+  75% {
+    transform: rotate(-45deg) translate(-2px, -2px);
+  }
+}
+
+/* Flowing hearts */
+.small-heart {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #ff4d6d;
+  transform: rotate(-45deg);
+  animation: floatUp 2s ease-in-out forwards;
+  opacity: 0;
+}
+
+.small-heart:before,
+.small-heart:after {
+  content: '';
+  width: 15px;
+  height: 15px;
+  background-color: #ff4d6d;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.small-heart:before {
+  top: -7.5px;
+  left: 0;
+}
+
+.small-heart:after {
+  left: 7.5px;
+  top: 0;
+}
+
+/* Floating animation */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1) rotate(-45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(0.5) rotate(-45deg);
+    opacity: 0;
+  }
+}
+
+/* Falling hearts */
+.falling-heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff4d6d;
+  transform: rotate(-45deg);
+  animation: fall 5s linear infinite;
+  opacity: 0.8;
+}
+
+.falling-heart:before,
+.falling-heart:after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background-color: #ff4d6d;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.falling-heart:before {
+  top: -10px;
+  left: 0;
+}
+
+.falling-heart:after {
+  left: 10px;
+  top: 0;
+}
+
+/* Falling animation */
+@keyframes fall {
+  0% {
+    transform: translateY(-100px) rotate(-45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(-45deg);
+    opacity: 0;
+  }
+}
+
+/* Floating hearts */
+.floating-hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  color: #ff4d6d;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-120vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Sparkles */
+.sparkles::before {
+  content: "✨✨✨✨✨✨";
+  position: fixed;
+  top: 20%;
+  left: 10%;
+  font-size: 20px;
+  opacity: 0.6;
+  animation: sparkle 4s infinite ease-in-out;
+}
+
+.sparkles::after {
+  content: "✨✨✨✨✨";
+  position: fixed;
+  bottom: 15%;
+  right: 15%;
+  font-size: 20px;
+  opacity: 0.7;
+  animation: sparkle 6s infinite ease-in-out;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
